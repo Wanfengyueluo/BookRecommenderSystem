@@ -1,0 +1,19 @@
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://192.168.2.2:27017/recommender
+  redis:
+    port: 6379
+    host: 192.168.2.2
+    timeout: 5000
+    database: 0
+    password:
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+  freemarker:
+    cache: false
+server:
+  port: 8080

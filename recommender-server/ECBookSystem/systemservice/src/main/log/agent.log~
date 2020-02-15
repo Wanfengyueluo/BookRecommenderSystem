@@ -1,0 +1,3 @@
+16:45:19 [http-nio-8080-exec-2] INFO  c.wan.Controller.UserController - PRODUCT_RATING_PREFIX:6|1316171565|5
+16:45:19 [http-nio-8080-exec-2] INFO  c.wan.Listener.SaveEventListener - com.wan.POJO.User@31a8bf85
+16:45:19 [http-nio-8080-exec-2] INFO  c.wan.Listener.SaveEventListener - com.wan.POJO.Rating@648e4be9
