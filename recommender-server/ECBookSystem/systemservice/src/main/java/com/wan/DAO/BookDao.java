@@ -19,7 +19,6 @@ import java.util.List;
 @Component
 public class BookDao {
 
-  private static final int RECOMMENDER_MAX_NUM = 20;
   @Autowired MongoTemplate mongoTemplate;
 
   /**
@@ -30,12 +29,10 @@ public class BookDao {
    * @return
    */
   public Result getBookList(int state, int page, int size) {
-    initMongoDB();
+    // initMongoDB();
     ArrayList<Book> lists = new ArrayList<>();
     List<Book> books = mongoTemplate.findAll(Book.class).subList(size * (page - 1), size * page);
-    for (Book book : books) {
-      lists.add(book);
-    }
+    lists.addAll(books);
     if (state == 0) {
       state = 1;
       int total = mongoTemplate.findAll(Book.class).size();
@@ -47,22 +44,20 @@ public class BookDao {
 
   /**
    * @description: 获取书籍列表，并初始化书籍表（过滤一些不完整的数据）
-   * @param null
+   * @param
    * @return
    */
   private ArrayList<Book> getBookList() {
     initMongoDB();
     ArrayList<Book> lists = new ArrayList<>();
     List<Book> books = mongoTemplate.findAll(Book.class);
-    for (Book book : books) {
-      lists.add(book);
-    }
+    lists.addAll(books);
     return lists;
   }
 
   /**
    * @description:从RateMoreBooks表中获取评分次数最多的书籍列表
-   * @param null
+   * @param
    * @return
    */
   public Result getHotBookList() {
@@ -70,10 +65,11 @@ public class BookDao {
 
     ArrayList<Book> results = new ArrayList<>();
 
-    int len =
-        rateMoreBooks.size() > RECOMMENDER_MAX_NUM ? RECOMMENDER_MAX_NUM : rateMoreBooks.size();
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < rateMoreBooks.size(); i++) {
       findBook(results, rateMoreBooks.get(i).getBookId());
+      if (results.size() == 20) {
+        break;
+      }
     }
     return new Result(
         ResultCode.SUCCESS.getCode(),
@@ -83,17 +79,18 @@ public class BookDao {
 
   /**
    * @description:从AverageBooks表中获取评分高并且评分次数大于1的书籍列表
-   * @param null
+   * @param
    * @return
    */
   public Result getHighBookList() {
     List<AverageBooks> averageBooks = mongoTemplate.findAll(AverageBooks.class);
 
     ArrayList<Book> results = new ArrayList<>();
-
-    int len = averageBooks.size() > RECOMMENDER_MAX_NUM ? RECOMMENDER_MAX_NUM : averageBooks.size();
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < averageBooks.size(); i++) {
       findBook(results, averageBooks.get(i).getBookId());
+      if (results.size() == 20) {
+        break;
+      }
     }
     return new Result(
         ResultCode.SUCCESS.getCode(),
@@ -103,7 +100,7 @@ public class BookDao {
 
   /**
    * @description:从DataLoader将数据导入后需要过滤一些错误数据，每次取数据前调用删除错误数据
-   * @param null
+   * @param
    * @return
    */
   public void initMongoDB() {
@@ -194,7 +191,8 @@ public class BookDao {
     if (users.size() > 0) {
       User user = users.get(0);
       for (int i = 0; i < user.getScoreRecord().size(); i++) {
-        if (bookId == user.getScoreRecord().get(i).getBookId()) {
+        if ((bookId == user.getScoreRecord().get(i).getBookId())
+            && (user.getScoreRecord().get(i).getScore() > 0)) {
           System.out.println(user.getScoreRecord().get(i).getBookId());
           isRating = true;
           myScore = user.getScoreRecord().get(i).getScore();

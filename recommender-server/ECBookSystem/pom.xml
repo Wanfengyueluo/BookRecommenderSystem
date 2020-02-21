@@ -63,7 +63,6 @@
                     <target>1.8</target>
                     <!--<fork>true</fork>-->
                     <meminitial>512m</meminitial>
-                    <!-- 如果不够读者可以加大 -->
                     <maxmem>4096m</maxmem>
                 </configuration>
             </plugin>
