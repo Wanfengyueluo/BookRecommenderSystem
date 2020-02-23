@@ -1,4 +1,0 @@
-[submodule "book-front"]
-	path = recommender-web/book
-	url = git@github.com:Wanfengyueluo/book.git
-
