@@ -1,0 +1,6 @@
+[submodule "book"]
+	path = recommender/book
+	url = git@github.com:Wanfengyueluo/book.git
+[submodule "book-end"]
+	path = book-end
+	url = git@github.com:Wanfengyueluo/book-server.git
