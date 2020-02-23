@@ -1,3 +1,6 @@
 [submodule "book-front"]
 	path = book-front
 	url = git@github.com:Wanfengyueluo/book.git
+[submodule "book-end"]
+	path = book-end
+	url = git@github.com:Wanfengyueluo/book-server.git
