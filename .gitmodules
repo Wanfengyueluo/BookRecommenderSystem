@@ -1,0 +1,3 @@
+[submodule "book-front"]
+	path = book-front
+	url = git@github.com:Wanfengyueluo/book.git
