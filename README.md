@@ -10,11 +10,11 @@
 
 ## 项目架构🍏：
 
-![](../MyBookRecommenderSystem/doc/项目架构.png)
+![](https://github.com/Wanfengyueluo/BookRecommenderSystem/doc/项目架构.png)
 
 ## 项目功能🍎：
 
-![](../MyBookRecommenderSystem/doc/基于大数据技术的图书推荐系统.png)
+![](https://github.com/Wanfengyueluo/BookRecommenderSystem/doc/基于大数据技术的图书推荐系统.png)
 
 ## 项目启动流程🍐：
 
