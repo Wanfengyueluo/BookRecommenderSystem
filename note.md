@@ -1,5 +1,21 @@
 💯❤️😅🚗:100:
 
+## 推荐算法：
+
+- 关联规则推荐：从大量数据中寻找满足一定支持度的频繁项集，再一句置信度从中找到强关联规则，根据该关联规则向用户推荐其可能感兴趣的事物
+
+- 基于内容推荐：建立推荐对象模型、建立用户兴趣模型、获取匹配程度进行推荐
+
+- 协同过滤推荐
+
+  - 基于用户推荐：通过所有用户的历史数据得到用户对于项目的偏好程度，计算找到与目    标用户兴趣爱好相似的相似用户组，根据相似用户组的历史偏好向目标用户进行推荐
+
+  ![](../MyBookRecommenderSystem/doc/基于用户的推荐.png)
+
+  - 基于物品推荐：与基于用户推荐很相似，通过计算所有物品之间的相似性，然后找到未评分物品的最近邻居，根据用户对最近邻居的评分来预测相应未评分物品分数，按排名将预测物品反馈给用户
+
+  ![](../MyBookRecommenderSystem/doc/基于物品的推荐.png)
+
 ```
 1.zookeeper
 启动：bin/zkServer.sh start
@@ -40,6 +56,10 @@ consumer：bin/kafka-console-consumer.sh --bootstrap-server linux:9092 --topic r
 1.业务系统启动
 2.离线调度程序azkaban
 3.zookeeper -- kafka启动，创建topic ----kafkaStream启动 ---实时推荐程序启动 ---- 启动flume
+8.Elasticsearch
+cluster.name: wan-elasticsearch
+node-name: wan-name
+portL9200
 ```
 
 当前存在的问题：Book数据不全，导致很多书籍没法显示
