@@ -59,7 +59,7 @@ consumer：bin/kafka-console-consumer.sh --bootstrap-server linux:9092 --topic r
 8.Elasticsearch
 cluster.name: wan-elasticsearch
 node-name: wan-name
-portL9200
+port:9200
 ```
 
 当前存在的问题：Book数据不全，导致很多书籍没法显示
